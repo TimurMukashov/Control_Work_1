@@ -1,19 +1,31 @@
 package org.example;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Scanner;
 
 public class Task4 {
 
     public static void main(String[] args) {
 
-        Map<String, String[]> map = new HashMap<>();
-        map.put("Тимур", new String[]{"89228391032", "89228391035"});
-        map.put("Иван", new String[]{"89228371032"});
-        map.put("Артем", new String[]{"89227377032"});
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Введите текст:");
+        String text = scanner.nextLine();
 
-        for (String value : map.get("Тимур")) {
-            System.out.println(value);
+        String[] words = text.split(" ");
+        int count = 0;
+
+        for (int i = 0; i < words.length; i++) {
+            if (words[i].startsWith("а")) {
+                count++;
+            }
+
+            if (words[i].startsWith("А")) {
+                words[i] = words[i].replaceFirst("А", "а");
+                count++;
+            }
         }
+
+        String newText = String.join(" ", words);
+        System.out.println("Новый текст: " + newText);
+        System.out.println("Количество слов, начинающихся на 'а': " + count);
     }
 }
